@@ -1,0 +1,49 @@
+
+
+black_colour_order = {
+    "firstName": "Naruto",
+    "lastName": "Uchiha",
+    "address": "Konoha, 142 apt.",
+    "metroStation": 4,
+    "phone": "+7 800 355 35 35",
+    "rentTime": 5,
+    "deliveryDate": "2020-06-06",
+    "comment": "Saske, come back to Konoha",
+    "color": ["BLACK"]
+}
+
+gray_colour_order = {
+    "firstName": "Naruto",
+    "lastName": "Uchiha",
+    "address": "Konoha, 142 apt.",
+    "metroStation": 4,
+    "phone": "+7 800 355 35 35",
+    "rentTime": 5,
+    "deliveryDate": "2026-06-06",
+    "comment": "Saske, come back to Konoha",
+    "color": ["GRAY"]
+}
+
+no_colour_order = {
+    "firstName": "Naruto",
+    "lastName": "Uchiha",
+    "address": "Konoha, 142 apt.",
+    "metroStation": 4,
+    "phone": "+7 800 355 35 35",
+    "rentTime": 5,
+    "deliveryDate": "2020-06-06",
+    "comment": "Saske, come back to Konoha",
+    "color": []
+}
+
+both_colours_order = {
+    "firstName": "Naruto",
+    "lastName": "Uchiha",
+    "address": "Konoha, 142 apt.",
+    "metroStation": 4,
+    "phone": "+7 800 355 35 35",
+    "rentTime": 5,
+    "deliveryDate": "2020-06-06",
+    "comment": "Saske, come back to Konoha",
+    "color": ["BLACK", "GRAY"]
+}
