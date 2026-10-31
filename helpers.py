@@ -2,12 +2,17 @@ import requests
 import random
 import string
 
-def register_new_courier_and_return_login_password():
-    def generate_random_string(length):
-        letters = string.ascii_lowercase
-        random_string = ''.join(random.choice(letters) for i in range(length))
-        return random_string
 
+def generate_random_string(length):
+    letters = string.ascii_lowercase
+    random_string = ''.join(random.choice(letters) for i in range(length))
+    return random_string
+
+def register_new_courier_and_return_login_password():
+    # def generate_random_string(length):
+    #     letters = string.ascii_lowercase
+    #     random_string = ''.join(random.choice(letters) for i in range(length))
+    #     return random_string
     login_pass = []
 
     login = generate_random_string(10)
@@ -32,9 +37,9 @@ def register_new_courier_and_return_login_password():
 def creds_for_register_all_fields():
     letters = string.ascii_lowercase
 
-    login = ''.join(random.choice(letters) for i in range(10))
-    password = ''.join(random.choice(letters) for i in range(10))
-    first_name = ''.join(random.choice(letters) for i in range(10))
+    login = generate_random_string(10)
+    password = generate_random_string(10)
+    first_name = generate_random_string(10)
 
     payload = {
         "login": login,
@@ -46,8 +51,8 @@ def creds_for_register_all_fields():
 def creds_for_register_only_required_fields():
     letters = string.ascii_lowercase
 
-    login = ''.join(random.choice(letters) for i in range(10))
-    password = ''.join(random.choice(letters) for i in range(10))
+    login = generate_random_string(10)
+    password = generate_random_string(10)
 
     payload = {
         "login": login,
