@@ -4,6 +4,8 @@ import requests
 import data
 import json
 
+import urls
+
 
 class TestCreateOrder:
 
@@ -12,7 +14,7 @@ class TestCreateOrder:
     def test_create_order_success(self, order_data):
 
         payload = json.dumps(order_data)
-        response = requests.post("https://qa-scooter.education-services.ru/api/v1/orders", data=payload)
+        response = requests.post(urls.orders_list_url, data=payload)
         r = response.json()
 
         assert response.status_code == 201

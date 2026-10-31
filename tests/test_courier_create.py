@@ -2,6 +2,8 @@ import allure
 import pytest
 import requests
 import helpers
+import urls
+
 
 class TestCourierCreate:
 
@@ -9,12 +11,19 @@ class TestCourierCreate:
     @pytest.mark.parametrize(
         'payload_field',
         [
-        helpers.creds_for_register_all_fields(),
-        helpers.creds_for_register_only_required_fields()
+            {
+                "login": helpers.generate_random_string(10),
+                "password": helpers.generate_random_string(10)
+            },
+            {
+                "login": helpers.generate_random_string(10),
+                "password": helpers.generate_random_string(10),
+                "firstName": helpers.generate_random_string(10)
+            }
         ])
     def test_courier_create_success(self, payload_field):
         payload = payload_field
-        response = requests.post('https://qa-scooter.education-services.ru/api/v1/courier', data=payload)
+        response = requests.post(urls.courier_create_url, data=payload)
 
         assert response.status_code == 201
         assert response.text == '{"ok":true}'
@@ -22,8 +31,8 @@ class TestCourierCreate:
     @allure.title('Негативная проверка регистрациции курьера с уже зарегистрированными дпнными')
     def test_register_existing_courier(self):
         payload = helpers.creds_for_register_all_fields()
-        requests.post('https://qa-scooter.education-services.ru/api/v1/courier', data=payload)
-        response = requests.post('https://qa-scooter.education-services.ru/api/v1/courier', data=payload)
+        requests.post(urls.courier_create_url, data=payload)
+        response = requests.post(urls.courier_create_url, data=payload)
         r = response.json()
 
         assert response.status_code == 409
@@ -38,7 +47,7 @@ class TestCourierCreate:
         ])
     def test_register_new_courier_failure(self, payload_field):
         payload = payload_field
-        response = requests.post('https://qa-scooter.education-services.ru/api/v1/courier', data=payload)
+        response = requests.post(urls.courier_create_url, data=payload)
         r = response.json()
 
         assert response.status_code == 400

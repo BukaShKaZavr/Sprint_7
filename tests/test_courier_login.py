@@ -2,6 +2,8 @@ import allure
 import pytest
 import requests
 import helpers
+import urls
+
 
 class TestCourierLogin:
 
@@ -11,7 +13,7 @@ class TestCourierLogin:
             'login': create_courier[0],
             'password': create_courier[1]
         }
-        response = requests.post("https://qa-scooter.education-services.ru/api/v1/courier/login", data=payload)
+        response = requests.post(urls.courier_login_url, data=payload)
         r = response.json()
 
         assert response.status_code == 200
@@ -25,7 +27,7 @@ class TestCourierLogin:
                              ])
     def test_login_failure(self, creds_login):
         payload = creds_login
-        response = requests.post("https://qa-scooter.education-services.ru/api/v1/courier/login", data=payload)
+        response = requests.post(urls.courier_login_url, data=payload)
         r = response.json()
 
         assert response.status_code == 400
@@ -39,7 +41,7 @@ class TestCourierLogin:
                              ])
     def test_login_incorrect_field(self, creds_login):
         payload = creds_login
-        response = requests.post("https://qa-scooter.education-services.ru/api/v1/courier/login", data=payload)
+        response = requests.post(urls.courier_login_url, data=payload)
         r = response.json()
 
         assert response.status_code == 404
