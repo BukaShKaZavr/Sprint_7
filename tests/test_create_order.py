@@ -3,7 +3,6 @@ import pytest
 import requests
 import data
 import json
-
 import urls
 
 

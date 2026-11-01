@@ -1,6 +1,5 @@
 import allure
 import requests
-
 import urls
 
 

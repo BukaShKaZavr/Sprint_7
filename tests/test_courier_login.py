@@ -1,8 +1,8 @@
 import allure
 import pytest
 import requests
+import api_methods
 import data
-import helpers
 import urls
 
 
@@ -23,8 +23,8 @@ class TestCourierLogin:
     @allure.title('Негативная проверка логина курьера с отсутствием данных в полях')
     @pytest.mark.parametrize("creds_login",
                              [
-                                 {'login': helpers.register_new_courier_and_return_login_password()[0], 'password': ''},
-                                 {'login': '', 'password': helpers.register_new_courier_and_return_login_password()[1]}
+                                 {'login': api_methods.register_new_courier_and_return_login_password()[0], 'password': ''},
+                                 {'login': '', 'password': api_methods.register_new_courier_and_return_login_password()[1]}
                              ])
     def test_login_failure(self, creds_login):
         payload = creds_login
@@ -37,8 +37,8 @@ class TestCourierLogin:
     @allure.title('Негативная проверка логина курьера с невалидными данными')
     @pytest.mark.parametrize("creds_login",
                              [
-                                 {'login': helpers.register_new_courier_and_return_login_password()[0], 'password': 'fjsdfkjgs'},
-                                 {'login': 'oisdfoisdff', 'password': helpers.register_new_courier_and_return_login_password()[1]}
+                                 {'login': api_methods.register_new_courier_and_return_login_password()[0], 'password': 'fjsdfkjgs'},
+                                 {'login': 'oisdfoisdff', 'password': api_methods.register_new_courier_and_return_login_password()[1]}
                              ])
     def test_login_incorrect_field(self, creds_login):
         payload = creds_login
