@@ -1,6 +1,7 @@
 import allure
 import pytest
 import requests
+import data
 import helpers
 import urls
 
@@ -31,7 +32,7 @@ class TestCourierLogin:
         r = response.json()
 
         assert response.status_code == 400
-        assert r['message'] == 'Недостаточно данных для входа'
+        assert r['message'] == data.login_not_all_fields_message
 
     @allure.title('Негативная проверка логина курьера с невалидными данными')
     @pytest.mark.parametrize("creds_login",
@@ -45,4 +46,4 @@ class TestCourierLogin:
         r = response.json()
 
         assert response.status_code == 404
-        assert r['message'] == 'Учетная запись не найдена'
+        assert r['message'] == data.login_invalid_data_message

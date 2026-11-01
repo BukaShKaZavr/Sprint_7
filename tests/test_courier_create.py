@@ -1,6 +1,7 @@
 import allure
 import pytest
 import requests
+import data
 import helpers
 import urls
 
@@ -42,7 +43,7 @@ class TestCourierCreate:
         r = response.json()
 
         assert response.status_code == 409
-        assert r['message'] == 'Этот логин уже используется. Попробуйте другой.'
+        assert r['message'] == data.register_existing_courier_message
 
     @allure.title('Негативная проверка регистрации курьера с неполными обязательными данными')
     @pytest.mark.parametrize(
@@ -57,4 +58,4 @@ class TestCourierCreate:
         r = response.json()
 
         assert response.status_code == 400
-        assert r['message'] == 'Недостаточно данных для создания учетной записи'
+        assert r['message'] == data.register_not_all_fields_message

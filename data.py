@@ -1,4 +1,4 @@
-
+from conftest import delete_courier
 
 black_colour_order = {
     "firstName": "Naruto",
@@ -47,3 +47,10 @@ both_colours_order = {
     "comment": "Saske, come back to Konoha",
     "color": ["BLACK", "GRAY"]
 }
+
+register_existing_courier_message = 'Этот логин уже используется. Попробуйте другой.'
+register_not_all_fields_message = 'Недостаточно данных для создания учетной записи'
+login_not_all_fields_message = 'Недостаточно данных для входа'
+login_invalid_data_message = 'Учетная запись не найдена'
+delete_courier_without_id_message = 'Not Found.'
+delete_courier_invalid_id_message = 'Курьера с таким id нет.'
