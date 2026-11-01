@@ -34,31 +34,6 @@ def register_new_courier_and_return_login_password():
 
     return login_pass
 
-def creds_for_register_all_fields():
-    letters = string.ascii_lowercase
-
-    login = generate_random_string(10)
-    password = generate_random_string(10)
-    first_name = generate_random_string(10)
-
-    payload = {
-        "login": login,
-        "password": password,
-        "firstName": first_name
-    }
-    return payload
-
-def creds_for_register_only_required_fields():
-    letters = string.ascii_lowercase
-
-    login = generate_random_string(10)
-    password = generate_random_string(10)
-
-    payload = {
-        "login": login,
-        "password": password
-    }
-    return payload
 
 def return_id_after_login():
     user = register_new_courier_and_return_login_password()

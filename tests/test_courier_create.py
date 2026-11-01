@@ -21,16 +21,22 @@ class TestCourierCreate:
                 "firstName": helpers.generate_random_string(10)
             }
         ])
-    def test_courier_create_success(self, payload_field):
+    def test_courier_create_success(self, payload_field, delete_courier):
         payload = payload_field
         response = requests.post(urls.courier_create_url, data=payload)
 
         assert response.status_code == 201
         assert response.text == '{"ok":true}'
 
-    @allure.title('Негативная проверка регистрациции курьера с уже зарегистрированными дпнными')
+        delete_courier(payload["login"], payload["password"])
+
+    @allure.title('Негативная проверка регистрациции курьера с уже зарегистрированными данными')
     def test_register_existing_courier(self):
-        payload = helpers.creds_for_register_all_fields()
+        payload = {
+                "login": helpers.generate_random_string(10),
+                "password": helpers.generate_random_string(10),
+                "firstName": helpers.generate_random_string(10)
+            }
         requests.post(urls.courier_create_url, data=payload)
         response = requests.post(urls.courier_create_url, data=payload)
         r = response.json()

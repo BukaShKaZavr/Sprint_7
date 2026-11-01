@@ -19,7 +19,7 @@ class TestCourierLogin:
         assert response.status_code == 200
         assert r['id']
 
-    @allure.title('Негативная проверка логина курьера с отсутствем данных в полях')
+    @allure.title('Негативная проверка логина курьера с отсутствием данных в полях')
     @pytest.mark.parametrize("creds_login",
                              [
                                  {'login': helpers.register_new_courier_and_return_login_password()[0], 'password': ''},

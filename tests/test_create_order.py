@@ -14,7 +14,7 @@ class TestCreateOrder:
     def test_create_order_success(self, order_data):
 
         payload = json.dumps(order_data)
-        response = requests.post(urls.orders_list_url, data=payload)
+        response = requests.post(urls.order_create_url, data=payload)
         r = response.json()
 
         assert response.status_code == 201
