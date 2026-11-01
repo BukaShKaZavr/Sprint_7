@@ -2,7 +2,7 @@ import allure
 import requests
 import helpers
 
-@allure.step('Регистрация нового курьера и возврат его логина и пароля')
+@allure.step('Регистрируем нового курьера и возвращаем его логин и пароль')
 def register_new_courier_and_return_login_password():
     login_pass = []
 
@@ -25,7 +25,7 @@ def register_new_courier_and_return_login_password():
 
     return login_pass
 
-@allure.step('Логин курьера и возврат его id')
+@allure.step('Авторизируем курьера и возвращаем его id')
 def return_id_after_login():
     user = register_new_courier_and_return_login_password()
     payload = {
