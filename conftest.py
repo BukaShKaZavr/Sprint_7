@@ -2,20 +2,21 @@ import pytest
 import requests
 import api_methods
 import urls
+import api_requests
 
 
 @pytest.fixture(scope="function")
-def create_courier():
+def create_and_delete_courier(requests_object):
     user = api_methods.register_new_courier_and_return_login_password()
     yield user
     payload = {
         'login': user[0],
         'password': user[1]
     }
-    response = requests.post("https://qa-scooter.education-services.ru/api/v1/courier/login", data=payload)
+    response = requests_object.login_courier(payload)
     r = response.json()
     id_courier = r['id']
-    requests.delete(f"https://qa-scooter.education-services.ru/api/v1/courier/{id_courier}")
+    requests_object.delete_courier(id_courier)
 
 @pytest.fixture(scope="function")
 def id_courier():
@@ -32,3 +33,7 @@ def delete_courier():
     yield add_courier
     for ids in couriers_id:
         requests.delete(f'{urls.courier_delete_url}{ids}')
+
+@pytest.fixture(scope="function")
+def requests_object():
+    return api_requests.RequestsApi()

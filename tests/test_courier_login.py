@@ -1,20 +1,18 @@
 import allure
 import pytest
-import requests
 import api_methods
 import data
-import urls
 
 
 class TestCourierLogin:
 
     @allure.title('Позитивная проверка логина курьера')
-    def test_login_success(self, create_courier):
+    def test_login_success(self, create_and_delete_courier, requests_object):
         payload = {
-            'login': create_courier[0],
-            'password': create_courier[1]
+            'login': create_and_delete_courier[0],
+            'password': create_and_delete_courier[1]
         }
-        response = requests.post(urls.courier_login_url, data=payload)
+        response = requests_object.login_courier(payload)
         r = response.json()
 
         assert response.status_code == 200
@@ -26,9 +24,9 @@ class TestCourierLogin:
                                  {'login': api_methods.register_new_courier_and_return_login_password()[0], 'password': ''},
                                  {'login': '', 'password': api_methods.register_new_courier_and_return_login_password()[1]}
                              ])
-    def test_login_failure(self, creds_login):
+    def test_login_failure(self, creds_login, requests_object):
         payload = creds_login
-        response = requests.post(urls.courier_login_url, data=payload)
+        response = requests_object.login_courier(payload)
         r = response.json()
 
         assert response.status_code == 400
@@ -40,9 +38,9 @@ class TestCourierLogin:
                                  {'login': api_methods.register_new_courier_and_return_login_password()[0], 'password': 'fjsdfkjgs'},
                                  {'login': 'oisdfoisdff', 'password': api_methods.register_new_courier_and_return_login_password()[1]}
                              ])
-    def test_login_incorrect_field(self, creds_login):
+    def test_login_incorrect_field(self, creds_login, requests_object):
         payload = creds_login
-        response = requests.post(urls.courier_login_url, data=payload)
+        response = requests_object.login_courier(payload)
         r = response.json()
 
         assert response.status_code == 404
