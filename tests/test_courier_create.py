@@ -13,13 +13,13 @@ class TestCourierCreate:
         'payload_field',
         [
             {
-                "login": helpers.generate_random_string(10),
-                "password": helpers.generate_random_string(10)
+                "login": helpers.generate_random_strings(10),
+                "password": helpers.generate_random_strings(10)
             },
             {
-                "login": helpers.generate_random_string(10),
-                "password": helpers.generate_random_string(10),
-                "firstName": helpers.generate_random_string(10)
+                "login": helpers.generate_random_strings(10),
+                "password": helpers.generate_random_strings(10),
+                "firstName": helpers.generate_random_strings(10)
             }
         ])
     def test_courier_create_success(self, payload_field, delete_courier):
@@ -34,9 +34,9 @@ class TestCourierCreate:
     @allure.title('Негативная проверка регистрациции курьера с уже зарегистрированными данными')
     def test_register_existing_courier(self):
         payload = {
-                "login": helpers.generate_random_string(10),
-                "password": helpers.generate_random_string(10),
-                "firstName": helpers.generate_random_string(10)
+                "login": helpers.generate_random_strings(10),
+                "password": helpers.generate_random_strings(10),
+                "firstName": helpers.generate_random_strings(10)
             }
         requests.post(urls.courier_create_url, data=payload)
         response = requests.post(urls.courier_create_url, data=payload)

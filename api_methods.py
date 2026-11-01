@@ -6,9 +6,9 @@ import helpers
 def register_new_courier_and_return_login_password():
     login_pass = []
 
-    login = helpers.generate_random_string(10)
-    password = helpers.generate_random_string(10)
-    first_name = helpers.generate_random_string(10)
+    login = helpers.generate_random_strings(10)
+    password = helpers.generate_random_strings(10)
+    first_name = helpers.generate_random_strings(10)
 
     payload = {
         "login": login,
